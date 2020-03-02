@@ -18,3 +18,32 @@ export default new Vuex.Store({
     }
 })
 ```
+
+#### json对象和 formData对象转换
+
+1. JSON对象转成formData对象（支持一层对象）
+```
+const formData = new FormData();
+Object.keys(params).forEach((key) => {
+    formData.append(key, params[key]);
+});
+```
+2. formData对象转成JSON对象（支持一层对象）
+```
+var jsonData = {};
+formData.forEach((value, key) => jsonData[key] = value);
+```
+
+#### vuex 页面刷新数据丢失
+```
+// 在 APP.vue 的created中
+//在页面加载时读取sessionStorage里的状态信息
+if (sessionStorage.getItem("store") ) {
+    this.$store.replaceState(Object.assign({}, this.$store.state,JSON.parse(sessionStorage.getItem("store"))))
+} 
+
+//在页面刷新时将vuex里的信息保存到sessionStorage里
+window.addEventListener("beforeunload",()=>{
+    sessionStorage.setItem("store",JSON.stringify(this.$store.state))
+})
+```
