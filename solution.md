@@ -47,3 +47,11 @@ window.addEventListener("beforeunload",()=>{
     sessionStorage.setItem("store",JSON.stringify(this.$store.state))
 })
 ```
+
+#### vue 项目打包上线后所有资源404
+```
+// vue.config.js
+module.exports = {
+    publicPath: './',
+}
+```
