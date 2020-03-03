@@ -55,3 +55,23 @@ module.exports = {
     publicPath: './',
 }
 ```
+
+#### 设置和删除cookie
+```
+//设置
+const date = new Date();
+date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
+const lastTime = date.toGMTString();
+document.cookie = `api_token=${res.data.api_token};expires=${lastTime};`;
+document.cookie = `identity_token=${res.data.identity_token};expires=${lastTime};`;
+// 删除 => 只需设置失效时间为过去的时间，就会自动被删除
+const iden=document.cookie.indexOf("identity_token=");
+if(iden == -1){
+    return;
+} else{
+    const date = new Date();
+    date.setTime(date.getTime() - 24 * 60 * 60 * 1000);
+    const lastTime = date.toGMTString();
+    document.cookie = `identity_token='';expires=${lastTime};`;
+}
+```
