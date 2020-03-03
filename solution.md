@@ -75,3 +75,13 @@ if(iden == -1){
     document.cookie = `identity_token='';expires=${lastTime};`;
 }
 ```
+
+#### 修改host内容
+```
+host 位于C:\Windows\System32\Drivers\etc  使用编辑工具进行修改并保存即可。
+也可以：
+管理员身份运行cmd
+进入到 C:\Windows\System32\Drivers\etc
+notepad hosts
+修改并保存
+```
