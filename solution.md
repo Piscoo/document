@@ -85,3 +85,40 @@ host 位于C:\Windows\System32\Drivers\etc  使用编辑工具进行修改并保
 notepad hosts
 修改并保存
 ```
+
+#### hover 时按钮抖动
+```
+&:hover {
+    animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+}
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+```
+
+#### 页面内锚点跳转不被header遮挡内容
+```
+#seeVideo:target {
+    padding-top: 50px;
+}
+```
+
+#### git add 报错
+```
+// 问题XXX
+ LF will be replaced by CRLF in XXX
+The file will have its original line endings in your working directory
+// 办法
+git config --global core.autocrlf false
+```
