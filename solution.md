@@ -122,3 +122,10 @@ The file will have its original line endings in your working directory
 // 办法
 git config --global core.autocrlf false
 ```
+
+#### 解决iframe隐藏后iframe中的视频仍在播放
+```
+var ifr = document.getElementsByTagName("iframe")[0],
+    ifrLink = ifr.getAttribute("src");
+    ifr.setAttribute("src", ifrLink);
+```
