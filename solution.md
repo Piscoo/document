@@ -132,6 +132,25 @@ var ifr = document.getElementsByTagName("iframe")[0],
 
 #### 动态的向下的箭头
 ```
+main .heart{
+animation: heart 1.3s ease-in-out 2.7s infinite alternate;
+}
+
+//margin-top会发生卡顿
+@keyframes heart{
+from{margin-top:0px;}
+to{margin-top:-6px;}
+}
+
+//用transform就流畅了
+@keyframes heart{
+from{transform:translate(0,0)}
+to{transform:translate(0,6px)}
+}
+```
+
+#### 动态的向下的箭头
+```
 // html 
 <div class="down">
     <div class="arrow arrow-1"></div>
@@ -218,4 +237,76 @@ var ifr = document.getElementsByTagName("iframe")[0],
         }
     }
 }
+```
+
+##### 逐渐上移
+```
+.coverbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 156, 246, 0.5);
+    transition: height 0.5s ease-out, opacity 0.2s ease-in, visibility 0.2s ease-in;
+    visibility: 0;
+    opacity: 0;
+    &.active {
+        opacity: 1;
+        visibility: 1;
+        height: 100%;
+    }
+    .img {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #fff;
+    }
+    .word {
+        color: #fff;
+    }
+}
+```
+
+#### 从左滑入
+```
+// css
+.box {
+    opacity: 0;
+    &.active {
+        opacity: 1;
+        animation: bounceInLeft 1s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    @keyframes bounceInLeft {
+        0% {
+            opacity: 0;
+            transform: translate3d(-3000px, 0, 0);
+        }
+        60% {
+            opacity: 1;
+            transform: translate3d(25px, 0, 0);
+        }
+        75% {
+            transform: translate3d(-10px, 0, 0);
+        }
+        90% {
+            transform: translate3d(5px, 0, 0);
+        }
+        100% {
+            transform: none;
+        }
+    }
+}
+// js
+$(window).scroll(function(){
+    let bHeight = document.body.clientHeight;
+    if($(window).scrollTop() > ($(".box").offset().top - bHeight) && $(window).scrollTop() < ($(".box").offset().top + 150)){
+        $('.box').addClass('active')
+    }else{
+        $('.box').removeClass('active')
+    }
+})
 ```
