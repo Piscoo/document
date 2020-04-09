@@ -310,3 +310,28 @@ $(window).scroll(function(){
     }
 })
 ```
+
+### 设备类型判断
+```
+if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+
+    $('#bannervideo').removeAttr('autoplay');
+    $('#editvideo').removeAttr('autoplay');
+}
+```
+### 生成随机的评论总数
+`Math.floor((Math.random()+1)*Math.pow(5,4));`
+
+### 移动端的视频兼容处理
+```
+  //其他移动端浏览器只能让用户自己触发
+  $(window).on('touchstart', function(){
+    $(".second .coverimg").fadeOut(500);
+    $("#editvideo").trigger('play');
+  });
+  // 兼容微信(微信可以自动播放)
+  document.addEventListener("WeixinJSBridgeReady", function () {
+    $(".second .coverimg").fadeOut(500);
+    $("#editvideo").trigger('play');
+  }, false);
+```
