@@ -335,3 +335,101 @@ if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
     $("#editvideo").trigger('play');
   }, false);
 ```
+
+### 实现hover时改变椭圆按钮的渐变背景
+```
+// html
+
+<div class="download-btns">
+    <a href="" class="download">
+        <div class="move-bg">
+            <div class="bg-color-left"></div>
+            <div class="bg-color-right"></div>
+        </div>
+        <p>免费下载</p>
+    </a>
+    <a href="" class="buy">立即购买</a>
+</div>
+
+// css
+
+.download-btns {
+    a {
+        display: inline-block;
+        width: 240px;
+        height: 50px;
+        line-height: 50px;
+        border-radius: 25px;
+        overflow: hidden;
+        font-size: 20px;
+        font-weight: 500;
+        text-align: center;
+        text-decoration: none;
+    }
+    .download {
+        margin-right: 50px;
+        position: relative;
+        transition: transform .3s;
+        p{
+            display: block;
+            position: relative;
+            height: 100%;
+            line-height: 50px;
+        }
+        .move-bg{
+            position: absolute;
+            height: 50px;
+            width: 480px;
+            left: -240px;
+            transition: all 0.3s cubic-bezier(0.47, 0, 0.745, 0.715);
+
+            .bg-color-left{
+                position: relative;
+                float: left;
+                width: 240px;
+                height: 50px;
+                background: linear-gradient(to left, rgba(30,231,255,1), rgba(105,89,255,1));
+            }
+
+            .bg-color-right{
+                position: relative;
+                float: left;
+                width: 240px;
+                height: 50px;
+                background: linear-gradient(to right, rgba(30,231,255,1),  rgba(105,89,255,1));
+            }
+        }
+        &:hover {
+            .move-bg{
+                transition: all 0.3s cubic-bezier(0.47, 0, 0.745, 0.715);
+                transform: translateX(240px);
+
+            }
+        }
+    }
+    .buy {
+        background: url("../img/new-mirror/borderbg.png") center no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 100%;
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+            height: 100%;
+            z-index: -1;
+            background-image: linear-gradient(to right, rgba(105,89,255,1), rgba(30,231,255,1));
+            transition: right 0.4s cubic-bezier(0.47, 0, 0.745, 0.715), opacity 0.5s cubic-bezier(0.47, 0, 0.745, 0.715);
+        }
+        &:hover {
+            &::before {
+                right: 0;
+                opacity: 1;
+            }
+        }
+    }
+}
+```
