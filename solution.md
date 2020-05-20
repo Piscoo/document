@@ -433,3 +433,19 @@ if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
     }
 }
 ```
+
+###  分割数组
+```
+    // 分割数组函数
+    function chunkArr(arr, num) {
+      num = num*1 || 1;
+      var result = [];
+      arr.forEach(function(item, i){
+        if(i % num === 0){
+          result.push([]);
+        }
+        result[result.length - 1].push(item);
+      });
+      return result;
+    }
+```
