@@ -88,7 +88,7 @@ var person = new Person("test");
 person.distractedGreeting();  // test
 ```
 
-**解决方案二：**使用`bind`
+**解决方案二：** 使用`bind`
 ```
 var nickname = "Pisco";
 function Person(name) {
