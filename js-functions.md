@@ -315,18 +315,18 @@ function getCookie(name) {
 
 18. 获取URL中GET参数值
 ```
-function getGet(name) {
+function getUrlQuery(name) {
     querystr = window.location.href.split("?");
     if(querystr[1]) {
-        GETs = querystr[1].split("&");
-        GET = [];
-        for(i = 0; i < GETs.length; i++) {
-            tmp_arr = GETs[i].split("=");
+        queryList = querystr[1].split("&");
+        aimQuery = [];
+        for(i = 0; i < queryList.length; i++) {
+            tmp_arr = queryList[i].split("=");
             key = tmp_arr[0];
-            GET[key] = tmp_arr[1];
+            aimQuery[key] = tmp_arr[1];
         }
     }
-    return GET[name];
+    return aimQuery[name];
 }
 ```
 
