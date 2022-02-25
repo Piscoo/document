@@ -504,3 +504,15 @@ function clearSpaces(srt) {
     return str.replace(/[ ]/g, '');
 }
 ```
+31. window.open() 在新窗口而不是新标签页打开页面
+```
+window.open 方法有三个参数：
+`window.open(url, [name], [configuration])`
+其中：
+- url，为要新打开页面的url
+- name，为新打开窗口的名字，可以通过此名字来获取该窗口对象
+- configuration，为新打开窗口的一些配置，比如是否有菜单栏、滚动条、长高等信息
+如：
+`window.open(url, "_blank", "scrollbars=yes,resizable=1,modal=false,alwaysRaised=yes");`
+[name]参数除了可以是自定义的值，还可以是与超链接a的target属性值相同的一些值
+```
